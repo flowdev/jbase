@@ -110,7 +110,7 @@ public final class PrettyPrinter {
 		buf.append(value.toString());
 		break;
 	    case "java.lang.String":
-		buf.append('"').append(value.toString()).append('"');
+		buf.append(escapeString(value.toString()));
 		break;
 	    default:
 		prettyPrintObject(indentation, buf, value);
@@ -147,7 +147,8 @@ public final class PrettyPrinter {
     public static String escapeString(String s) {
 	return "\""
 		+ s.replace("\\", "\\\\").replace("\t", "\\t")
-			.replace("\n", "\\n").replace("\r", "\\r") + "\"";
+			.replace("\n", "\\n").replace("\r", "\\r")
+			.replace("\"", "\\\"") + "\"";
     }
 
     public static StringBuilder prettyPrintList(String indentation,
