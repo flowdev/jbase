@@ -107,10 +107,10 @@ public final class PrettyPrinter {
 	    case "java.lang.Long":
 	    case "java.lang.Float":
 	    case "java.lang.Double":
-		buf.append('"').append(value.toString()).append('"');
+		buf.append(value.toString());
 		break;
 	    case "java.lang.String":
-		buf.append(value.toString());
+		buf.append('"').append(value.toString()).append('"');
 		break;
 	    default:
 		prettyPrintObject(indentation, buf, value);
