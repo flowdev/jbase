@@ -39,12 +39,16 @@ public final class PrettyPrinter {
 
     public static StringBuilder prettyPrintObject(String indentation,
 	    StringBuilder buf, Object obj) {
-	buf.append(obj.getClass().getSimpleName()).append(" {").append(NL);
+	if (obj == null) {
+	    buf.append(NULL);
+	} else {
+	    buf.append(obj.getClass().getSimpleName()).append(" {").append(NL);
 
-	prettyPrintEntries(indentation + INDENT, buf,
-		fieldsToEntries(obj.getClass().getFields(), obj), " = ");
+	    prettyPrintEntries(indentation + INDENT, buf,
+		    fieldsToEntries(obj.getClass().getFields(), obj), " = ");
 
-	buf.append(indentation).append("}");
+	    buf.append(indentation).append("}");
+	}
 	return buf;
     }
 
