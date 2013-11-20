@@ -50,15 +50,15 @@ public class CheckTest {
 		this.isOk = isOk;
 
 		this.op = new MyCheck();
-		op.setOut(outPort);
-		op.setErrorOut(errPort);
+		op.setOutPort(outPort);
+		op.setErrorOutPort(errPort);
 	}
 
 	@Test
 	public void test() {
 		Data data = new Data();
 		data.b = this.isOk;
-		this.op.getIn().send(data);
+		this.op.getInPort().send(data);
 	}
 
 }

@@ -4,30 +4,30 @@ import org.flowdev.base.Port;
 
 
 public abstract class Check<T, C> extends Configure<C> {
-	private Port<T> out;
-	private Port<T> errorOut;
-	private final Port<T> in = new Port<T>() {
+	private Port<T> outPort;
+	private Port<T> errorOutPort;
+	private final Port<T> inPort = new Port<T>() {
 		@Override
 		public void send(T data) {
 			if (isOk(data)) {
-				out.send(data);
+				outPort.send(data);
 			} else {
-				errorOut.send(data);
+				errorOutPort.send(data);
 			}
 		}
 	};
 
 	protected abstract boolean isOk(T data);
 
-	public Port<T> getIn() {
-		return in;
+	public Port<T> getInPort() {
+		return inPort;
 	}
 
-	public void setOut(Port<T> out) {
-		this.out = out;
+	public void setOutPort(Port<T> outPort) {
+		this.outPort = outPort;
 	}
 
-	public void setErrorOut(Port<T> errorOut) {
-		this.errorOut = errorOut;
+	public void setErrorOutPort(Port<T> errorOutPort) {
+		this.errorOutPort = errorOutPort;
 	}
 }

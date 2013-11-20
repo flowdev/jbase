@@ -8,14 +8,14 @@ import org.flowdev.base.Port;
  * of the same type.
  */
 public abstract class Filter<T, C> extends Configure<C> {
-	private Port<T> out;
-	private Port<T> in = new Port<T>() {
+	private Port<T> outPort;
+	private Port<T> inPort = new Port<T>() {
 		@Override
 		public void send(T data) {
 			T result = filter(data);
 
 			if (result != null) {
-				out.send(result);
+				outPort.send(result);
 			}
 		}
 	};
@@ -27,12 +27,12 @@ public abstract class Filter<T, C> extends Configure<C> {
 	protected abstract T filter(T data);
 
 	/** Called during initialization phase. */
-	public Port<T> getIn() {
-		return in;
+	public Port<T> getInPort() {
+		return inPort;
 	}
 
 	/** Called during initialization phase. */
-	public void setOut(Port<T> out) {
-		this.out = out;
+	public void setOutPort(Port<T> out) {
+		this.outPort = out;
 	}
 }

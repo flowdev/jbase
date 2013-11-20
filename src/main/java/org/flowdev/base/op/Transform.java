@@ -4,14 +4,14 @@ import org.flowdev.base.Port;
 
 
 public abstract class Transform<T, U, C> extends Configure<C> {
-	private Port<U> out;
-	private final Port<T> in = new Port<T>() {
+	private Port<U> outPort;
+	private final Port<T> inPort = new Port<T>() {
 		@Override
 		public void send(T data) {
 			U result = transform(data);
 
 			if (result != null) {
-				out.send(result);
+				outPort.send(result);
 			}
 		}
 	};
@@ -19,12 +19,12 @@ public abstract class Transform<T, U, C> extends Configure<C> {
 	protected abstract U transform(T data);
 
 	/** Called during initialization phase. */
-	public Port<T> getIn() {
-		return in;
+	public Port<T> getInPort() {
+		return inPort;
 	}
 
 	/** Called during initialization phase. */
-	public void setOut(Port<U> out) {
-		this.out = out;
+	public void setOutPort(Port<U> out) {
+		this.outPort = out;
 	}
 }
