@@ -3,7 +3,7 @@ package org.flowdev.base.op;
 import org.flowdev.base.Port;
 
 
-public abstract class Check<T, C> extends Configure<C> {
+public abstract class Check<T, C> extends BaseOp<C> {
 	private Port<T> outPort;
 	private Port<T> errorOutPort;
 	private final Port<T> inPort = new Port<T>() {

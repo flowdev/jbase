@@ -2,21 +2,20 @@ package org.flowdev.base.op;
 
 import org.flowdev.base.Port;
 
+import java.io.IOException;
 
-public abstract class Transform<T, U, C> extends Configure<C> {
-	private Port<U> outPort;
-	private final Port<T> inPort = new Port<T>() {
-		@Override
-		public void send(T data) {
-			U result = transform(data);
 
-			if (result != null) {
-				outPort.send(result);
-			}
-		}
-	};
+public abstract class Transform<T, U, C> extends BaseOp<C> {
+	protected Port<U> outPort;
+    private final Port<T> inPort = (data) -> {
+        try {
+            transform(data);
+        } catch (Throwable t) {
+            sendError(t);
+        }
+    };
 
-	protected abstract U transform(T data);
+	protected abstract void transform(T data) throws Exception;
 
 	/** Called during initialization phase. */
 	public Port<T> getInPort() {

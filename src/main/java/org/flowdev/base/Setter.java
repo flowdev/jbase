@@ -1,9 +1,9 @@
 package org.flowdev.base;
 
 /**
- * Generic setter. It sets <S> in <T> and returns <U>. In future JDKs it should
- * be implemented as lambda expression. Implementations allow parameterization
- * of generic components.
+ * Generic setter. It sets subdata in data and returns something of type &lt;OutputType&gt;.
+ * It should be implemented as lambda expression.
+ * Implementations allow parameterization of generic components.
  * 
  * @author ole
  */
