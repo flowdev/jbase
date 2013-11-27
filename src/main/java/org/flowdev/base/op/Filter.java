@@ -9,7 +9,7 @@ import org.flowdev.base.Port;
  */
 public abstract class Filter<T, C> extends BaseOp<C> {
 	protected Port<T> outPort;
-    private Port<T> inPort = (data) -> {
+    private Port<T> inPort = data -> {
         try {
             filter(data);
         } catch (Throwable t) {

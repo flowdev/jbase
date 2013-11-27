@@ -6,16 +6,13 @@ import org.flowdev.base.Port;
 public abstract class Check<T, C> extends BaseOp<C> {
 	private Port<T> outPort;
 	private Port<T> errorOutPort;
-	private final Port<T> inPort = new Port<T>() {
-		@Override
-		public void send(T data) {
-			if (isOk(data)) {
-				outPort.send(data);
-			} else {
-				errorOutPort.send(data);
-			}
-		}
-	};
+	private final Port<T> inPort = data -> {
+        if (isOk(data)) {
+            outPort.send(data);
+        } else {
+            errorOutPort.send(data);
+        }
+    };
 
 	protected abstract boolean isOk(T data);
 

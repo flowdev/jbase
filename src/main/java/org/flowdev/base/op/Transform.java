@@ -2,8 +2,6 @@ package org.flowdev.base.op;
 
 import org.flowdev.base.Port;
 
-import java.io.IOException;
-
 
 public abstract class Transform<T, U, C> extends BaseOp<C> {
 	protected Port<U> outPort;

@@ -45,7 +45,7 @@ public final class PrettyPrinter {
             buf.append(obj.getClass().getSimpleName()).append(" {").append(NL);
 
             prettyPrintEntries(indentation + INDENT, buf,
-                    fieldsToEntries(obj.getClass().getFields(), obj), " = ");
+                    fieldsToEntries(obj.getClass().getFields(), obj));
 
             buf.append(indentation).append("}");
         }
@@ -71,7 +71,7 @@ public final class PrettyPrinter {
         }
     }
 
-    public static StringBuilder prettyPrintEntries(String indentation, StringBuilder buf, Entry[] entries, String relation) {
+    public static StringBuilder prettyPrintEntries(String indentation, StringBuilder buf, Entry[] entries) {
         Arrays.sort(entries);
 
         for (Entry entry : entries) {
@@ -127,7 +127,7 @@ public final class PrettyPrinter {
     public static StringBuilder prettyPrintMap(String indentation, StringBuilder buf, Map<?, ?> map) {
         buf.append("Map {").append(NL);
 
-        prettyPrintEntries(indentation + INDENT, buf, mapToEntries(map), " : ");
+        prettyPrintEntries(indentation + INDENT, buf, mapToEntries(map));
 
         buf.append(indentation).append("}");
         return buf;

@@ -24,11 +24,8 @@ public class CheckTest {
         }
     }
 
-    private static Port<Data> successPort = (data) -> {
-    };
-    private static Port<Data> failPort = (data) -> {
-        fail("Wrong port! Data.b: " + data.b);
-    };
+    private static Port<Data> successPort = data -> { };
+    private static Port<Data> failPort = data -> fail("Wrong port! Data.b: " + data.b);
 
     @Parameterized.Parameters
     public static Collection<?> checkPorts() {
