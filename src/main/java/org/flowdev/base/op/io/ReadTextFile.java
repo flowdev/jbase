@@ -30,13 +30,12 @@ public class ReadTextFile<T, U> extends Transform<T, U, EmptyConfig> {
 
     protected void transform(T data) throws IOException {
         String fileName = params.getFileName.get(data);
-        U ret = null;
 
         Path path = Paths.get(fileName);
         byte[] buf = Files.readAllBytes(path);
         String content = new String(buf, UTF8);
 
-        ret = params.setFileContent.set(data, content);
+        U ret = params.setFileContent.set(data, content);
         outPort.send(ret);
     }
 }
