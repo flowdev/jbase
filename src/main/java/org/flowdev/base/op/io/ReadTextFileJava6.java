@@ -33,6 +33,7 @@ public class ReadTextFileJava6<T, U> extends Transform<T, U, EmptyConfig> {
 
         InputStreamReader isr = new InputStreamReader(new FileInputStream(fileName), UTF8);
         String content = readContent(isr);
+        isr.close();
 
         U transformedData = params.setFileContent.set(data, content);
         outPort.send(transformedData);
