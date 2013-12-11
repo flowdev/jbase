@@ -7,9 +7,6 @@ import org.flowdev.base.op.Consumer;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static org.flowdev.base.op.io.ReadTextFile.UTF8;
 
