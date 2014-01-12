@@ -29,7 +29,7 @@ public abstract class Filter<T, C> extends BaseOp<C> {
 	}
 
 	/** Called during initialization phase. */
-	public void setOutPort(Port<T> out) {
-		this.outPort = out;
-	}
+    public void setOutPort(Port<T> outPort) {
+        this.outPort = outPort;
+    }
 }
