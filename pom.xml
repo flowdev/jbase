@@ -2,11 +2,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.flowdev</groupId>
   <artifactId>base</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>base</name>
-  <description>Java base for flowdev</description>
+    <version>0.0.2-SNAPSHOT</version>
+    <name>base</name>
+    <description>Java base for flowdev</description>
 
-  <dependencies>
+    <dependencies>
     <dependency>
 	  <groupId>junit</groupId>
 	  <artifactId>junit</artifactId>
@@ -14,10 +14,10 @@
 	  <scope>test</scope>
     </dependency>
   </dependencies>
- 
-   <build>
+
+    <build>
         <plugins>
-            <plugin>
+        <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>

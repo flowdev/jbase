@@ -1,7 +1,7 @@
 package org.flowdev.base.op.io;
 
 import org.flowdev.base.Getter;
-import org.flowdev.base.data.EmptyConfig;
+import org.flowdev.base.data.NoConfig;
 import org.flowdev.base.op.Consumer;
 
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 
 import static org.flowdev.base.op.io.ReadTextFile.UTF8;
 
-public class WriteTextFile<T> extends Consumer<T, EmptyConfig> {
+public class WriteTextFile<T> extends Consumer<T, NoConfig> {
     public static class Params<T> {
         public Getter<T, String> getFileName;
         public Getter<T, String> getFileContent;

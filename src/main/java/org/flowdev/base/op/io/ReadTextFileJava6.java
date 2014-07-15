@@ -2,7 +2,7 @@ package org.flowdev.base.op.io;
 
 import org.flowdev.base.Getter;
 import org.flowdev.base.Setter;
-import org.flowdev.base.data.EmptyConfig;
+import org.flowdev.base.data.NoConfig;
 import org.flowdev.base.op.Transform;
 
 import java.io.FileInputStream;
@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
 /**
  * This operation reads the content of a file as a UTF-8 text into a string.
  */
-public class ReadTextFileJava6<T, U> extends Transform<T, U, EmptyConfig> {
+public class ReadTextFileJava6<T, U> extends Transform<T, U, NoConfig> {
     public static class Params<T, U> {
         public Getter<T, String> getFileName;
         public Setter<String, T, U> setFileContent;

@@ -1,7 +1,7 @@
 package org.flowdev.base.op;
 
 import org.flowdev.base.Port;
-import org.flowdev.base.data.EmptyConfig;
+import org.flowdev.base.data.NoConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -17,14 +17,15 @@ public class CheckTest {
         boolean b;
     }
 
-    private static class MyCheck extends Check<Data, EmptyConfig> {
+    private static class MyCheck extends Check<Data, NoConfig> {
         @Override
         protected boolean isOk(Data data) {
             return data.b;
         }
     }
 
-    private static Port<Data> successPort = data -> { };
+    private static Port<Data> successPort = data -> {
+    };
     private static Port<Data> failPort = data -> fail("Wrong port! Data.b: " + data.b);
 
     @Parameterized.Parameters
@@ -35,7 +36,7 @@ public class CheckTest {
         });
     }
 
-    private Check<Data, EmptyConfig> op;
+    private Check<Data, NoConfig> op;
     private boolean isOk;
 
     public CheckTest(boolean isOk, Port<Data> outPort, Port<Data> errPort) {
