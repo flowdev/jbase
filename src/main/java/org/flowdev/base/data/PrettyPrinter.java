@@ -12,15 +12,15 @@ import java.util.Map;
  * 'toString()' methods, debugging, ...
  */
 public final class PrettyPrinter {
-    public final static String INDENT = "    ";
-    public final static String NL = System.lineSeparator();
-    public final static String NULL = "NULL";
+    final static String INDENT = "    ";
+    final static String NL = System.lineSeparator();
+    final static String NULL = "NULL";
 
-    public static class Entry implements Comparable<Entry> {
-        public String name;
-        public Object value;
+    private static class Entry implements Comparable<Entry> {
+        private String name;
+        private Object value;
 
-        public Entry(String nam, Object val) {
+        private Entry(String nam, Object val) {
             name = (nam == null) ? NULL : nam;
             value = val;
         }
@@ -37,10 +37,10 @@ public final class PrettyPrinter {
     }
 
     public static String prettyPrint(Object obj) {
-        return prettyPrintObject("", new StringBuilder(4096), obj).append(NL).toString();
+        return prettyPrintEntry("", new StringBuilder(4096), "", "", obj).toString();
     }
 
-    public static StringBuilder prettyPrintObject(String indentation, StringBuilder buf, Object obj) {
+    private static StringBuilder prettyPrintObject(String indentation, StringBuilder buf, Object obj) {
         if (obj == null) {
             buf.append(NULL);
         } else {
@@ -93,7 +93,7 @@ public final class PrettyPrinter {
         }
     }
 
-    public static StringBuilder prettyPrintEntries(String indentation, StringBuilder buf, List<Entry> entries) {
+    private static StringBuilder prettyPrintEntries(String indentation, StringBuilder buf, List<Entry> entries) {
         Collections.sort(entries);
 
         for (Entry entry : entries) {
@@ -103,8 +103,8 @@ public final class PrettyPrinter {
         return buf;
     }
 
-    public static StringBuilder prettyPrintEntry(String indentation,
-                                                 StringBuilder buf, String name, String relation, Object value) {
+    private static StringBuilder prettyPrintEntry(String indentation,
+                                                  StringBuilder buf, String name, String relation, Object value) {
 
         String type = (value == null) ? "" : value.getClass().getName();
 
@@ -145,7 +145,7 @@ public final class PrettyPrinter {
         return buf;
     }
 
-    public static StringBuilder prettyPrintMap(String indentation, StringBuilder buf, Map<?, ?> map) {
+    private static StringBuilder prettyPrintMap(String indentation, StringBuilder buf, Map<?, ?> map) {
         buf.append("Map {").append(NL);
 
         prettyPrintEntries(indentation + INDENT, buf, mapToEntries(map));
@@ -164,15 +164,7 @@ public final class PrettyPrinter {
         return entries;
     }
 
-    public static String escapeString(String s) {
-        return "\""
-                + s.replace("\\", "\\\\").replace("\t", "\\t").replace("\"", "\\\"")
-                .replace("\r", "\\r").replace("\n", "\\n")
-                .replace("\f", "\\f").replace("\b", "\\b")
-                + "\"";
-    }
-
-    public static StringBuilder prettyPrintList(String indentation, StringBuilder buf, List<?> list) {
+    private static StringBuilder prettyPrintList(String indentation, StringBuilder buf, List<?> list) {
         String innerIndentation = indentation + INDENT;
         int N = list.size();
 
@@ -186,7 +178,7 @@ public final class PrettyPrinter {
         return buf;
     }
 
-    public static StringBuilder prettyPrintArray(String indentation, StringBuilder buf, Object[] array) {
+    private static StringBuilder prettyPrintArray(String indentation, StringBuilder buf, Object[] array) {
         String innerIndentation = indentation + INDENT;
         int N = array.length;
 
@@ -198,5 +190,13 @@ public final class PrettyPrinter {
 
         buf.append(indentation).append("]");
         return buf;
+    }
+
+    public static String escapeString(String s) {
+        return "\""
+                + s.replace("\\", "\\\\").replace("\t", "\\t").replace("\"", "\\\"")
+                .replace("\r", "\\r").replace("\n", "\\n")
+                .replace("\f", "\\f").replace("\b", "\\b")
+                + "\"";
     }
 }

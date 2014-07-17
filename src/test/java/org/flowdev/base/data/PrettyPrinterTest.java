@@ -19,21 +19,21 @@ public class PrettyPrinterTest {
                 "    bla : true ;\n" +
                 "    blue : \"Test!\" ;\n" +
                 "    i : 123 ;\n" +
-                "}\n", prettyPrint(data));
-    }
-
-    @Test
-    public void testPrettyPrintEntries() throws Exception {
-
-    }
-
-    @Test
-    public void testPrettyPrintEntry() throws Exception {
-
+                "} ;\n", prettyPrint(data));
     }
 
     @Test
     public void testPrettyPrintMap() throws Exception {
+
+    }
+
+    @Test
+    public void testPrettyPrintList() throws Exception {
+
+    }
+
+    @Test
+    public void testPrettyPrintArray() throws Exception {
 
     }
 
@@ -55,11 +55,6 @@ public class PrettyPrinterTest {
         assertEquals("Formfeed not escaped properly.", "\"12\\f34\\f]]-\"", escapeString("12\f34\f]]-"));
         assertEquals("Backspace not escaped properly.", "\"\\b\"", escapeString("\b"));
         assertEquals("Backspace not escaped properly.", "\"12\\b34\\b]]-\"", escapeString("12\b34\b]]-"));
-    }
-
-    @Test
-    public void testPrettyPrintList() throws Exception {
-
     }
 
     public static class TestData {
