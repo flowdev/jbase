@@ -1,5 +1,6 @@
 package org.flowdev.base.data;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -119,7 +120,7 @@ public final class PrettyPrinter {
         } else if (value instanceof List) {
             prettyPrintList(indentation, buf, (List<?>) value);
         } else if (value.getClass().isArray()) {
-            prettyPrintArray(indentation, buf, (Object[]) value);
+            prettyPrintArray(indentation, buf, value);
         } else {
             switch (type) {
                 case "java.lang.Boolean":
@@ -165,27 +166,21 @@ public final class PrettyPrinter {
     }
 
     private static StringBuilder prettyPrintList(String indentation, StringBuilder buf, List<?> list) {
-        String innerIndentation = indentation + INDENT;
-        int N = list.size();
-
-        buf.append("List [").append(NL);
-
-        for (int i = 0; i < N; i++) {
-            prettyPrintEntry(innerIndentation, buf, "" + i, " : ", list.get(i));
-        }
-
-        buf.append(indentation).append("]");
-        return buf;
+        return prettyPrintListType(indentation, buf, "List", list, list.size(), (obj, i) -> ((List) obj).get(i));
     }
 
-    private static StringBuilder prettyPrintArray(String indentation, StringBuilder buf, Object[] array) {
-        String innerIndentation = indentation + INDENT;
-        int N = array.length;
+    private static StringBuilder prettyPrintArray(String indentation, StringBuilder buf, Object array) {
+        return prettyPrintListType(indentation, buf, "Array", array, Array.getLength(array), Array::get);
+    }
 
-        buf.append("Array [").append(NL);
+    private static StringBuilder prettyPrintListType(String indentation, StringBuilder buf,
+                                                     String type, Object list, int N, ListAccessor accessor) {
+        String innerIndentation = indentation + INDENT;
+
+        buf.append(type).append(" [").append(NL);
 
         for (int i = 0; i < N; i++) {
-            prettyPrintEntry(innerIndentation, buf, "" + i, " : ", array[i]);
+            prettyPrintEntry(innerIndentation, buf, "" + i, " : ", accessor.get(list, i));
         }
 
         buf.append(indentation).append("]");
@@ -198,5 +193,9 @@ public final class PrettyPrinter {
                 .replace("\r", "\\r").replace("\n", "\\n")
                 .replace("\f", "\\f").replace("\b", "\\b")
                 + "\"";
+    }
+
+    public interface ListAccessor {
+        Object get(Object list, int i);
     }
 }
