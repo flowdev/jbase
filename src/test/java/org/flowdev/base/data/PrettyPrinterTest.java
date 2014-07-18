@@ -325,6 +325,7 @@ public class PrettyPrinterTest {
         return data;
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     public static class TestData {
         private boolean aboolean;
         private Boolean aBoolean;
@@ -463,6 +464,7 @@ public class PrettyPrinterTest {
         }
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     public static class ComplexTestData {
         private TestData testData;
         private Map<String, String> strMap;

@@ -24,9 +24,9 @@ public class CheckTest {
         }
     }
 
-    private static Port<Data> successPort = data -> {
+    private static final Port<Data> successPort = data -> {
     };
-    private static Port<Data> failPort = data -> fail("Wrong port! Data.b: " + data.b);
+    private static final Port<Data> failPort = data -> fail("Wrong port! Data.b: " + data.b);
 
     @Parameterized.Parameters
     public static Collection<?> checkPorts() {
@@ -36,8 +36,8 @@ public class CheckTest {
         });
     }
 
-    private Check<Data, NoConfig> op;
-    private boolean isOk;
+    private final Check<Data, NoConfig> op;
+    private final boolean isOk;
 
     public CheckTest(boolean isOk, Port<Data> outPort, Port<Data> errPort) {
         this.isOk = isOk;

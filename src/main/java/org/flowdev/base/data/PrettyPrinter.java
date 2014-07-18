@@ -7,26 +7,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Utility class for printing data and config objects. This is useful for
  * 'toString()' methods, debugging, ...
  */
 public final class PrettyPrinter {
-    final static String INDENT = "    ";
-    final static String NL = System.lineSeparator();
-    final static String NULL = "NULL";
+    private final static String INDENT = "    ";
+    private final static String NL = System.lineSeparator();
+    private final static String NULL = "NULL";
 
     private static class Entry implements Comparable<Entry> {
-        private String name;
-        private Object value;
+        private final String name;
+        private final Object value;
 
         private Entry(String nam, Object val) {
             name = (nam == null) ? NULL : nam;
             value = val;
         }
 
-        public int compareTo(Entry e) {
+        public int compareTo(@SuppressWarnings("NullableProblems") Entry e) {
             return name.compareTo(e.name);
         }
     }
@@ -156,13 +157,10 @@ public final class PrettyPrinter {
     }
 
     private static List<Entry> mapToEntries(Map<?, ?> map) {
-        List<Entry> entries = new ArrayList<>(map.size());
-
-        for (Object key : map.keySet()) {
-            entries.add(new Entry(escapeString(key.toString()), map.get(key)));
-        }
-
-        return entries;
+        return map.entrySet().stream().map(
+                mapEntry -> new Entry(escapeString(mapEntry.getKey().toString()),
+                        mapEntry.getValue())
+        ).collect(Collectors.toList());
     }
 
     private static StringBuilder prettyPrintList(String indentation, StringBuilder buf, List<?> list) {

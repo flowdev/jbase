@@ -20,7 +20,7 @@ public class ReadTextFileJava6<T, U> extends Transform<T, U, NoConfig> {
         public Setter<String, T, U> setFileContent;
     }
 
-    public static final Charset UTF8 = Charset.forName("UTF-8");
+    private static final Charset UTF8 = Charset.forName("UTF-8");
 
     private final Params<T, U> params;
 
