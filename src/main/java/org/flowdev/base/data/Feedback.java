@@ -9,28 +9,28 @@ public final class Feedback {
     private List<String> errors = new ArrayList<>();
 
     public List<String> infos() {
-        return this.infos;
+        return infos;
     }
 
     public List<String> warnings() {
-        return this.warnings;
+        return warnings;
     }
 
     public List<String> errors() {
-        return this.errors;
+        return errors;
     }
 
-    public Feedback infos(final List<String> infos) {
+    public Feedback infos(List<String> infos) {
         this.infos = infos;
         return this;
     }
 
-    public Feedback warnings(final List<String> warnings) {
+    public Feedback warnings(List<String> warnings) {
         this.warnings = warnings;
         return this;
     }
 
-    public Feedback errors(final List<String> errors) {
+    public Feedback errors(List<String> errors) {
         this.errors = errors;
         return this;
     }
