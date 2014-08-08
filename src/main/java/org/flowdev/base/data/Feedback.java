@@ -8,27 +8,30 @@ public final class Feedback {
     private List<String> warnings = new ArrayList<>();
     private List<String> errors = new ArrayList<>();
 
-    public List<String> getInfos() {
-        return infos;
+    public List<String> infos() {
+        return this.infos;
     }
 
-    public void setInfos(List<String> infos) {
+    public List<String> warnings() {
+        return this.warnings;
+    }
+
+    public List<String> errors() {
+        return this.errors;
+    }
+
+    public Feedback infos(final List<String> infos) {
         this.infos = infos;
+        return this;
     }
 
-    public List<String> getWarnings() {
-        return warnings;
-    }
-
-    public void setWarnings(List<String> warnings) {
+    public Feedback warnings(final List<String> warnings) {
         this.warnings = warnings;
+        return this;
     }
 
-    public List<String> getErrors() {
-        return errors;
-    }
-
-    public void setErrors(List<String> errors) {
+    public Feedback errors(final List<String> errors) {
         this.errors = errors;
+        return this;
     }
 }
