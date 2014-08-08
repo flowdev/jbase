@@ -49,7 +49,7 @@ public final class PrettyPrinter {
             buf.append(obj.getClass().getSimpleName()).append(" {").append(NL);
 
             prettyPrintEntries(indentation + INDENT, buf,
-                    methodsToEntries(obj.getClass().getMethods(), obj));
+                    methodsToEntries(obj.getClass().getDeclaredMethods(), obj));
 
             buf.append(indentation).append("}");
         }
@@ -69,16 +69,17 @@ public final class PrettyPrinter {
     }
 
     private static boolean isGetter(Method method) {
-        String name = method.getName();
-        return method.getParameterCount() <= 0 && ((name.startsWith("get") && !name.equals("getClass")) || name.startsWith("is"));
+        return method.getParameterCount() <= 0;
     }
 
     private static String getEntryName(Method getter) {
         String name = getter.getName();
         if (name.startsWith("get")) {
             return cutPrefix(name, 3);
-        } else {
+        } else if (name.startsWith("is")) {
             return cutPrefix(name, 2);
+        } else {
+            return name;
         }
     }
 

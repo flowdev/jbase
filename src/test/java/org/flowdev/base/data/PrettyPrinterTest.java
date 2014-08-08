@@ -95,6 +95,18 @@ public class PrettyPrinterTest {
     }
 
     @Test
+    public void testPrettyPrintFluentObject() throws Exception {
+        FluentTestData testData = new FluentTestData().aboolean(true).aint(123).adouble(23.567).aString("A string!");
+
+        assertEquals("Simple objects aren't printed correctly.", "FluentTestData {\n" +
+                "    aString : \"A string!\" ;\n" +
+                "    aboolean : true ;\n" +
+                "    adouble : 23.567 ;\n" +
+                "    aint : 123 ;\n" +
+                "} ;\n", prettyPrint(testData));
+    }
+
+    @Test
     public void testPrettyPrintComplexObject() throws Exception {
         ComplexTestData data = new ComplexTestData();
         Map<String, String> map = new HashMap<>();
@@ -501,6 +513,50 @@ public class PrettyPrinterTest {
 
         public void setStrArray(String[] strArray) {
             this.strArray = strArray;
+        }
+    }
+
+    @SuppressWarnings("UnusedDeclaration")
+    public static class FluentTestData {
+        private boolean aboolean;
+        private int aint;
+        private double adouble;
+        private String aString;
+
+        public boolean aboolean() {
+            return aboolean;
+        }
+
+        public FluentTestData aboolean(boolean aboolean) {
+            this.aboolean = aboolean;
+            return this;
+        }
+
+        public int aint() {
+            return aint;
+        }
+
+        public FluentTestData aint(int aint) {
+            this.aint = aint;
+            return this;
+        }
+
+        public double adouble() {
+            return adouble;
+        }
+
+        public FluentTestData adouble(double adouble) {
+            this.adouble = adouble;
+            return this;
+        }
+
+        public String aString() {
+            return aString;
+        }
+
+        public FluentTestData aString(String aString) {
+            this.aString = aString;
+            return this;
         }
     }
 }
