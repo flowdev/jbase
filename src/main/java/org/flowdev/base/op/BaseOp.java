@@ -35,8 +35,9 @@ public abstract class BaseOp<C> {
         if (errorPort == null) {
             System.err.println("ERROR: errorPort is null and Exception occured:");
             t.printStackTrace();
+        } else {
+            errorPort.send(t);
         }
-        errorPort.send(t);
     }
 
     /**
