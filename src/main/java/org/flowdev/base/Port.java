@@ -1,9 +1,8 @@
 package org.flowdev.base;
 
-
 /**
- * This is the generic version of a Flow-oriented port. It works on any type.
- * It should be implemented as lambda expression.
+ * Generic Flow-oriented port. It works on any type.
+ * It should be implemented as a lambda expression.
  *
  * @author ole
  *
