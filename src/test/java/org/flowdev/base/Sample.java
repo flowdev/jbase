@@ -17,7 +17,6 @@ public class Sample {
         }
     }
     // end::TellNames[]
-
     // tag::SayHello[]
     public static class SayHello {
         private Port<String> inPort = name -> {    // <1>
@@ -37,7 +36,6 @@ public class Sample {
 
         tellNames.setOutPort(sayHello.getInPort());    // <2>
         // end::connect[]
-
         tellNames.tell();
     }
 }
