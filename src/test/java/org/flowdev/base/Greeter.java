@@ -1,6 +1,26 @@
 package org.flowdev.base;
 
-public class Sample {
+public class Greeter {
+    // tag::connect[]
+    private TellNames tellNames;    // <1>
+    private SayHello sayHello;
+
+    public Greeter() {
+        tellNames = new TellNames();    // <2>
+        sayHello = new SayHello();
+
+        createConnections();
+    }
+
+    private void createConnections() {
+        tellNames.setOutPort(sayHello.getInPort());    // <3>
+    }
+    // end::connect[]
+
+    public void greet() {
+        tellNames.tell();
+    }
+
     // tag::TellNames[]
     public static class TellNames {
         private Port<String> outPort;    // <1>
@@ -17,6 +37,7 @@ public class Sample {
         }
     }
     // end::TellNames[]
+
     // tag::SayHello[]
     public static class SayHello {
         private Port<String> inPort = name -> {    // <1>
@@ -30,13 +51,8 @@ public class Sample {
     // end::SayHello[]
 
     public static void main(String[] args) {
-        // tag::connect[]
-        TellNames tellNames = new TellNames();    // <1>
-        SayHello sayHello = new SayHello();
-
-        tellNames.setOutPort(sayHello.getInPort());    // <2>
-        // end::connect[]
-        tellNames.tell();
+        Greeter greeter = new Greeter();
+        greeter.greet();
     }
 }
 
