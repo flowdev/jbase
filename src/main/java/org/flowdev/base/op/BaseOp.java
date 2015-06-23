@@ -7,7 +7,7 @@ import org.flowdev.base.Port;
  * Base class for almost all operations since almost everything has to be configurable.
  */
 @SuppressWarnings("WeakerAccess")
-public abstract class BaseOp<C> {
+public abstract class BaseOp<C> implements Base<C> {
     private volatile C config;
     private Port<Throwable> errorPort;
     private final Port<C> configPort = (data) -> {
@@ -54,5 +54,13 @@ public abstract class BaseOp<C> {
      */
     public void setErrorPort(Port<Throwable> port) {
         this.errorPort = port;
+    }
+
+    /**
+     * Called during initialization phase.
+     */
+    public BaseOp<C> withErrorPort(Port<Throwable> port) {
+        this.errorPort = port;
+        return this;
     }
 }

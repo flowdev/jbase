@@ -18,20 +18,6 @@ public final class PrettyPrinter {
     private final static String NL = System.lineSeparator();
     private final static String NULL = "NULL";
 
-    private static class Entry implements Comparable<Entry> {
-        private final String name;
-        private final Object value;
-
-        private Entry(String nam, Object val) {
-            name = (nam == null) ? NULL : nam;
-            value = val;
-        }
-
-        public int compareTo(@SuppressWarnings("NullableProblems") Entry e) {
-            return name.compareTo(e.name);
-        }
-    }
-
     /**
      * Prevent instantiation.
      */
@@ -196,5 +182,19 @@ public final class PrettyPrinter {
 
     public interface ListAccessor {
         Object get(Object list, int i);
+    }
+
+    private static class Entry implements Comparable<Entry> {
+        private final String name;
+        private final Object value;
+
+        private Entry(String nam, Object val) {
+            name = (nam == null) ? NULL : nam;
+            value = val;
+        }
+
+        public int compareTo(@SuppressWarnings("NullableProblems") Entry e) {
+            return name.compareTo(e.name);
+        }
     }
 }

@@ -5,7 +5,7 @@ import org.flowdev.base.Port;
 /**
  * Base class for simple operations with a single input and no output.
  */
-public abstract class Consumer<T, C> extends BaseOp<C> {
+public abstract class Consume<T, C> extends BaseOp<C> {
     private Port<T> inPort = data -> {
         try {
             consume(data);

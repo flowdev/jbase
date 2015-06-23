@@ -38,4 +38,12 @@ public abstract class FilterOp<T, C> extends BaseOp<C> implements Filter<T, C> {
     public void setOutPort(Port<T> outPort) {
         this.outPort = outPort;
     }
+
+    /**
+     * Called during initialization phase.
+     */
+    public FilterOp<T, C> withOutPort(Port<T> outPort) {
+        this.outPort = outPort;
+        return this;
+    }
 }

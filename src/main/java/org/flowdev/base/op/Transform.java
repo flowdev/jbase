@@ -28,4 +28,12 @@ public abstract class Transform<T, U, C> extends BaseOp<C> {
     public void setOutPort(Port<U> out) {
         this.outPort = out;
     }
+
+    /**
+     * Called during initialization phase.
+     */
+    public Transform<T, U, C> withOutPort(Port<U> out) {
+        this.outPort = out;
+        return this;
+    }
 }

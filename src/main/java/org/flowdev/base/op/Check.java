@@ -25,7 +25,17 @@ public abstract class Check<T, C> extends BaseOp<C> {
         this.outPort = outPort;
     }
 
+    public Check<T, C> withOutPort(Port<T> outPort) {
+        this.outPort = outPort;
+        return this;
+    }
+
     public void setErrorOutPort(Port<T> errorOutPort) {
         this.errorOutPort = errorOutPort;
+    }
+
+    public Check<T, C> withErrorOutPort(Port<T> errorOutPort) {
+        this.errorOutPort = errorOutPort;
+        return this;
     }
 }

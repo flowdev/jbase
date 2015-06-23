@@ -2,7 +2,7 @@ package org.flowdev.base.op.io;
 
 import org.flowdev.base.Getter;
 import org.flowdev.base.data.NoConfig;
-import org.flowdev.base.op.Consumer;
+import org.flowdev.base.op.Consume;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.io.OutputStreamWriter;
 
 import static org.flowdev.base.op.io.ReadTextFile.UTF8;
 
-public class WriteTextFileJava6<T> extends Consumer<T, NoConfig> {
+public class WriteTextFileJava6<T> extends Consume<T, NoConfig> {
     public static class Params<T> {
         public Getter<T, String> getFileName;
         public Getter<T, String> getFileContent;
